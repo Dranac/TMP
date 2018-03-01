@@ -1,0 +1,77 @@
+{% block coinmarketcap %}
+    {% if basic.coinmarketcap is defined and basic.coinmarketcap is not empty %}
+        <div id="cmc-recap" class="ui small three statistics">
+            <div class="ui inverted statistic">
+                <div class="value">
+                    {{ basic.coinmarketcap.available_supply|number_format }}
+                </div>
+                <div class="label">
+                    Circulating Supply
+                </div>
+            </div>
+            <div class="ui inverted statistic">
+                <div class="value">
+                    {{ basic.coinmarketcap.market_cap_usd|number_format }}
+                    <i class="usd icon"></i>
+                </div>
+                <div class="label">
+                    market cap in $
+                </div>
+            </div>
+            <div class="ui inverted statistic">
+                <div class="value">
+                    {{ basic.coinmarketcap["24h_volume_usd"]|number_format }}
+                    <i class="usd icon"></i>
+                </div>
+                <div class="label">
+                    24h volume in $
+                </div>
+            </div>
+            <div class="ui inverted statistic">
+                <div class="value">
+                    {{ basic.coinmarketcap["percent_change_1h"] }}
+                    %
+                </div>
+                <div class="label">
+                    Percent change last hour
+                </div>
+            </div>
+            <div class="ui inverted statistic">
+                <div class="value">
+                    {{ basic.coinmarketcap["percent_change_24h"] }}
+                    %
+                </div>
+                <div class="label">
+                    Percent change last day
+                </div>
+            </div>
+            <div class="ui inverted statistic">
+                <div class="value">
+                    {{ basic.coinmarketcap["percent_change_7d"] }}
+                    %
+                </div>
+                <div class="label">
+                    Percent change last week
+                </div>
+            </div>
+            <div class="ui inverted statistic">
+                <div class="value">
+                    {{ basic.coinmarketcap.price_usd }}
+                    <i class="usd icon"></i>
+                </div>
+                <div class="label">
+                    value in $
+                </div>
+            </div>
+            <div class="ui inverted statistic">
+                <div class="value">
+                    {{ basic.coinmarketcap.price_btc }}
+                    <i class="bitcoin icon"></i>
+                </div>
+                <div class="label">
+                    value in BTC
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

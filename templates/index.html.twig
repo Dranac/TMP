@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+
+{% block custom_css %}
+    <style>
+        .masthead.segment {
+            min-height: 700px;
+            padding: 1em 0em;
+        }
+
+        .masthead h1.ui.header {
+            margin-top: 3em;
+            margin-bottom: 0em;
+            font-size: 4em;
+            font-weight: normal;
+        }
+
+        .masthead h2 {
+            font-size: 1.7em;
+            font-weight: normal;
+        }
+
+        .ui.vertical.stripe {
+            padding: 8em 0em;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div id="wrapper">
+        <div class="ui inverted vertical masthead center aligned segment">
+            <div class="ui text container">
+                <h1 class="ui inverted header">
+                    CRY-BOARD
+                </h1>
+                <h2 class="ui inverted header">
+                    Data about your favorite crypto which will provide you happy or sad tears.
+                </h2>
+                <a class="ui huge primary button" data-scroll href="#scroll">
+                    Search your crypto <i class="right arrow icon"></i>
+                </a>
+            </div>
+        </div>
+
+        <div id="scroll" class="ui vertical stripe segment">
+            <div class="ui middle aligned stackable grid container">
+                <div class="ui three column grid">
+                    <div class="column">
+                        {% for data in coins %}
+                            {% include 'widget/coinCard.html.twig' with {coin: data} only %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block custom_js %}
+    <script>
+        var scroll = new SmoothScroll('a[href*="#"]');
+    </script>
+{% endblock %}

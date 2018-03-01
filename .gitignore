@@ -1,0 +1,12 @@
+###> symfony/framework-bundle ###
+.env
+.idea
+.vagrant/*
+public/bundles
+var/*
+vendor/*
+playbook/*.retry
+
+Vagrantfile
+composer.lock
+hosts

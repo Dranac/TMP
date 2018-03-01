@@ -1,0 +1,63 @@
+{% block orderBook %}
+    <div class="orderBookWrapper">
+        <h5 class="ui horizontal divider header">
+            <i class="book icon"></i>
+            Order book (first 20)
+        </h5>
+
+        <table class="order-book-table">
+            <thead>
+            <tr>
+                <th class="mobile hidden center aligned">Amount</th>
+                <th class="center aligned">Buy</th>
+
+                <th class="center aligned">Sell</th>
+                <th class="mobile hidden center aligned">Amount</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% set volumeAsk = 0 %}
+            {% set volumeBid = 0 %}
+            {% set market = book.market %}
+            {% for i in range(0,19) %}
+                <tr>
+
+                    {% if market.bids[i] is defined %}
+                        {% set bid = market.bids[i] %}
+                        {#{% set volumeBid = volumeBid + market.bids[i].remaining_volume %}#}
+                        <td class="mobile hidden center aligned"
+                            data-type="amount">
+                            {{ bid.volume|round(2)|localizednumber }}
+                        </td>
+                        <td class="center aligned" data-type="sell">
+                            {{ bid.price|scientificNumberFormatter }}
+                            <p class="mobile only">
+                             ( x  {{ bid.volume|round(2)|localizednumber }})
+                            </p>
+                        </td>
+                    {% else %}
+                        <td class="mobile hidden center aligned">-</td>
+                        <td class="center aligned">-</td>
+                    {% endif %}
+                    {% if market.asks[i] is defined %}
+                        {% set ask = market.asks[i] %}
+                        <td class="center aligned" data-type="buy">
+                            {{ ask.price|scientificNumberFormatter }}
+                            <p class="mobile only">
+                                ( x  {{ ask.volume|round(2)|localizednumber }})
+                            </p>
+                        </td>
+                        <td class="mobile hidden center aligned"
+                            data-type="amount">
+                            {{ ask.volume|round(2)|localizednumber }}
+                        </td>
+                    {% else %}
+                        <td class="mobile hidden center aligned">-</td>
+                        <td class="center aligned">-</td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

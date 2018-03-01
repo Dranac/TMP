@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+
+{% block custom_css %}
+    <style>
+        #wrapper {
+            padding: 0 10px;
+        }
+
+        .big-price-header {
+            margin-bottom: .75em !important;
+        }
+
+        .big-price {
+            font-size: 2.5em;
+        }
+    </style>
+{% endblock %}
+
+{% block seo %}
+    <meta name="description"
+          content="Phoboard is a place where you can find a lot of information about the Photon coin.">
+    <meta name="keywords"
+          content="Phoboard, photon, PHOTON, photon coin, cryptocurrency, blake, game currency, photon statistics, #photon, PHOTONATION">
+{% endblock %}
+
+{% block title %}
+    <title>{{ current.name }} Dashboard</title>
+{% endblock %}
+
+{% block body %}
+    <div id="wrapper" class="ui fluid container">
+        <div class="ui stackable centered grid">
+            <div class="row">
+                <div id="header-wrapper" class="sixteen wide tablet eight wide computer center aligned column">
+                    <div class="ui segment cloudy-segment">
+                        <h1 class="ui header">{{ current.name|upper }} Dashboard</h1>
+                        <h3 class="ui sub header">
+                            This website is a tool which retrieve market data for a specific crypto-currency.
+                        </h3>
+
+                        {% if urls is not empty %}
+                            <div class="ui horizontal list linkList">
+                                {% for value in urls %}
+                                    <div class="item">
+                                        <a href="{{ value.url }}" target="_blank">
+                                            <i class="{{ value.icon }} icon"></i>
+                                            {{ value.label }}
+                                        </a>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="sixteen wide column">
+                    {% include 'widget/coinmarketcap.html.twig' %}
+                </div>
+            </div>
+
+            {# MARKETS #}
+            {% for key,array in markets %}
+                {% if array is not empty %}
+                    {% include 'widget/ticker.html.twig' %}
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

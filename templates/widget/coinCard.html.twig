@@ -1,0 +1,26 @@
+{% block card %}
+    <div class="ui fluid inverted orange card">
+        <div class="content">
+            <a class="right floated" href="{{ coin.id|lower }}">
+                <i class="eye icon"></i> see data
+            </a>
+            <div class="header">
+                {{ coin.name }} ({{ coin.symbol }})
+            </div>
+        </div>
+        <div class="description">
+            <p class="center aligned">
+                <i class="massive {{ coin.status }} icon"></i>
+            </p>
+        </div>
+        <div class="extra content">
+            <div class="meta">
+                <p class="center aligned ">
+                    {{ coin["percent_change_1h"] }}% (1h) |
+                    {{ coin["percent_change_24h"] }}% (24h) |
+                    {{ coin["percent_change_7d"] }}% (7d)
+                </p>
+            </div>
+        </div>
+    </div>
+{% endblock %}

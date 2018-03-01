@@ -1,0 +1,107 @@
+{% block ticker %}
+    <div class="row markets-wrapper">
+        <div class="column">
+            <div class=" ui teal segment darky-segment">
+                <div class="ui grid">
+                    <div class="row markets-name-wrapper">
+                        <div class="column">
+                            <h2 class="ui left aligned header">{{ key|upper }}</h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="column">
+                            <div class="ui stackable doubling three column centered grid">
+                                {% for exchange,market in array %}
+                                    {% if market.data is iterable %}
+                                        <div class="column">
+                                            <div class="ui segment cloudy-segment market-wrapper">
+                                                <h4 class="ui header">
+                                                    <a href="{{ market.url }}" target="_blank">
+                                                        {{ exchange|upper }} [{{ current.symbol|upper }}
+                                                        - {{ key|upper }}]
+                                                        <i class="external link icon"></i>
+                                                    </a>
+                                                </h4>
+                                                <p>
+                                                    {% if date(market.data.at) < date('-30minutes') %}
+                                                        <span data-position="bottom left"
+                                                              data-tooltip="Last retrieval at {{ market.data.at|localizeddate }}">
+                                                    Outdated
+                                                    <i class="ui orange help circle icon"></i>
+                                                </span>
+                                                    {% else %}
+                                                        <span data-position="bottom left"
+                                                              data-tooltip="Data retrieved at {{ market.data.at|localizeddate }}.">
+                                                    Up to date
+                                                    <i class="ui green warning circle icon"></i>
+                                                </span>
+                                                    {% endif %}
+                                                </p>
+                                                <p>
+                                                    Vol. (24h):
+                                                    {{ market.data.ticker.vol|number_format }} {{ current.symbol|upper }}
+                                                </p>
+
+                                                <p>
+                                                    High. (24h):
+                                                    {% if market.data.ticker.high is defined %}
+                                                        {{ market.data.ticker.high|scientificNumberFormatter }} {{ key|upper }}
+                                                    {% else %}
+                                                        <span data-position="bottom left"
+                                                              data-tooltip="This information isn't provided by exchange.">
+                                                        N/A <i class="orange question circle icon"></i>
+                                                    </span>
+                                                    {% endif %}
+                                                </p>
+                                                <p>
+                                                    Low. (24h):
+                                                    {% if market.data.ticker.low is defined %}
+                                                        {{ market.data.ticker.low|scientificNumberFormatter }} {{ key|upper }}
+                                                    {% else %}
+                                                        <span data-position="bottom left"
+                                                              data-tooltip="This information isn't provided by exchange.">
+                                                        N/A <i class="orange question circle icon"></i>
+                                                    </span>
+                                                    {% endif %}
+                                                </p>
+                                                {% if market.data.ticker.buy is defined or market.data.ticker.sell is defined %}
+                                                <table class="ui fixed very basic celled table global-info-table">
+                                                    <tr>
+                                                        <th class="center aligned four wide">
+                                                            Buy at :
+                                                        </th>
+                                                        <td class="twelve wide">
+                                                            {% if market.data.ticker.buy == 0 %}
+                                                                - (no buy order)
+                                                            {% else %}
+                                                                {{ market.data.ticker.buy|scientificNumberFormatter }} {{ key|upper }}
+                                                            {% endif %}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th class="center aligned four wide">
+                                                            Sell at :
+                                                        </th>
+                                                        <td class="twelve wide">
+                                                            {% if market.data.ticker.sell == 0 %}
+                                                                - (no sell order)
+                                                            {% else %}
+                                                                {{ market.data.ticker.sell|scientificNumberFormatter }} {{ key|upper }}
+                                                            {% endif %}
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                                {% endif %}
+                                                {% include 'widget/order-book.html.twig' with {book: market.data} %}
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

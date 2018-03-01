@@ -1,0 +1,16 @@
+- hosts: localhost
+  tasks:
+  - cron:
+      name: CoinMarketCap command initializer
+      minute: 10
+      job: ~/cryboard/current/bin/console app:global:coinmarketcap:synchronise
+
+  - cron:
+      name: CPatex command initializer
+      minute: 2
+      job: ~~/cryboard/current/bin/console app:exchange:cpatex:synchronise
+
+  - cron:
+      name: Cryptopia command initializer
+      minute: 2
+      job: ~/cryboard/current/bin/console app:exchange:cryptopia:synchronise

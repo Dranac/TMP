@@ -1,0 +1,227 @@
+body {
+    background-color: #2c3e50;
+}
+
+/**
+HOMEPAGE - INDEX
+ */
+
+.linkList > .item * {
+    color: #2c3e50 !important;
+}
+
+.linkList > .item:hover * {
+    color: #2980b9 !important;
+}
+
+#header-wrapper {
+    margin-top: 10px;
+}
+
+#header-wrapper h3 {
+    margin: 0 0 20px !important;
+    padding: 0 !important;
+}
+
+#header-wrapper h1 {
+    margin: 10px 0 10px !important;
+    padding: 0 !important;
+}
+
+/**
+OTHER
+ */
+
+#main-title {
+    text-align: center;
+    margin: 25px 0 40px;
+    font-size: 2.5em;
+    color: white;
+}
+
+.grid .segment {
+    min-height: 100%;
+}
+
+.cloudy-segment {
+    background-color: #e6e6e6 !important;
+}
+
+.darky-segment {
+    background-color: #34495e !important;
+}
+
+.darky-segment h2 {
+    color: #e6e6e6 !important;
+}
+
+.markets-wrapper .global-info-table tr:hover {
+    background-color: #c3c3c3;
+}
+
+.markets-wrapper .markets-name-wrapper {
+    padding-bottom: 0 !important;
+}
+
+.markets-wrapper .cloudy-segment {
+    padding-bottom: 10px !important;
+}
+
+.markets-wrapper .cloudy-segment h4 {
+    margin-bottom: 5px !important;
+}
+
+#market-change-wrapper > p {
+    margin: 2px;
+}
+
+/* ORDER BOOK */
+
+.order-book-table {
+    width: 100%;
+}
+
+.order-book-table tr:hover td {
+    background-color: #c3c3c3!important;
+}
+
+.order-book-table td, .order-book-table th {
+    text-align: center;
+}
+.order-book-table td > p {
+    font-size: 0.8em;
+}
+
+.order-book-table tbody tr:nth-child(odd) {
+    background-color: #dbdbdb;
+}
+
+.orderBookWrapper td, .orderBookWrapper th {
+    font-size: 0.83rem;
+}
+
+.right-bordered, .orderBuy > div:first-child {
+    border-right: 1px solid #95a5a6;
+}
+
+.orderBuy > div > div,
+.orderSell > div > div {
+    font-size: 0.85rem;
+}
+
+.orderBuy .orderBuyHead,
+.orderSell .orderSellHead {
+    padding: 15px 0 10px !important;
+    text-decoration: underline;
+}
+
+.orderBuy > div > div,
+.orderSell > div > div {
+    padding: 5px 0 !important;
+}
+
+.orderBuy > div > div > div > div,
+.orderSell > div > div > div > div {
+    padding: 6px 0 !important;
+}
+
+.market-name {
+    text-transform: uppercase !important;
+    font-weight: bold !important;
+}
+
+.orderBuy .orderBuyHead,
+.orderSell .orderSellHead {
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.orderBuy .row:hover > div,
+.orderSell .row:hover > div {
+    font-weight: bold;
+    background-color: #dfdfdf;
+}
+
+.market-wrapper {
+    min-height: 100%;
+    padding-bottom: 40px !important;
+}
+
+.highlight {
+    font-weight: bold;
+}
+
+/**
+ * COINMARKETCAP CUSTOM CSS
+ */
+#cmc-recap > div.statistic {
+    margin: 0 auto 20px;
+}
+
+/**
+CUSTOM
+ */
+/* Mobile */
+
+@media only screen and (max-width: 767px) {
+    [class*="mobile hidden"],
+    [class*="tablet only"]:not(.mobile),
+    [class*="computer only"]:not(.mobile),
+    [class*="large monitor only"]:not(.mobile),
+    [class*="widescreen monitor only"]:not(.mobile),
+    [class*="or lower hidden"] {
+        display: none !important;
+    }
+}
+
+/* Tablet / iPad Portrait */
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    [class*="mobile only"]:not(.tablet),
+    [class*="tablet hidden"],
+    [class*="computer only"]:not(.tablet),
+    [class*="large monitor only"]:not(.tablet),
+    [class*="widescreen monitor only"]:not(.tablet),
+    [class*="or lower hidden"]:not(.mobile) {
+        display: none !important;
+    }
+}
+
+/* Computer / Desktop / iPad Landscape */
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+    [class*="mobile only"]:not(.computer),
+    [class*="tablet only"]:not(.computer),
+    [class*="computer hidden"],
+    [class*="large monitor only"]:not(.computer),
+    [class*="widescreen monitor only"]:not(.computer),
+    [class*="or lower hidden"]:not(.tablet):not(.mobile) {
+        display: none !important;
+    }
+}
+
+/* Large Monitor */
+
+@media only screen and (min-width: 1200px) and (max-width: 1919px) {
+    [class*="mobile only"]:not([class*="large monitor"]),
+    [class*="tablet only"]:not([class*="large monitor"]),
+    [class*="computer only"]:not([class*="large monitor"]),
+    [class*="large monitor hidden"],
+    [class*="widescreen monitor only"]:not([class*="large monitor"]),
+    [class*="or lower hidden"]:not(.computer):not(.tablet):not(.mobile) {
+        display: none !important;
+    }
+}
+
+/* Widescreen Monitor */
+
+@media only screen and (min-width: 1920px) {
+    [class*="mobile only"]:not([class*="widescreen monitor"]),
+    [class*="tablet only"]:not([class*="widescreen monitor"]),
+    [class*="computer only"]:not([class*="widescreen monitor"]),
+    [class*="large monitor only"]:not([class*="widescreen monitor"]),
+    [class*="widescreen monitor hidden"],
+    [class*="widescreen monitor or lower hidden"] {
+        display: none !important;
+    }
+}

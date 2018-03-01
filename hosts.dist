@@ -1,0 +1,2 @@
+[production]
+37.59.45.99 ansible_user={%SSH_USER%} ansible_ssh_pass={%SSH_PASS%}

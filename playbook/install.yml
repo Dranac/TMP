@@ -1,0 +1,70 @@
+---
+- hosts: production
+  vars:
+    ansible_become_pass: SHOULD_BE_SECRET_AND_SOMEWHERE_ELSE
+    app_name: cryboard
+    app_dir: /home/kodory
+    web_dir: /var/www
+    repo_url: git@bitbucket.org:vperillat/cryboard.git
+    repo_remote: origin
+    repo_version: master
+    release_date: "{{ ansible_date_time.iso8601_basic_short }}"
+
+  tasks:
+    - name: Clone app repository
+      git:
+        repo: "{{repo_url}}"
+        dest: "{{app_dir}}/{{app_name}}/{{release_date}}"
+        version: master
+        accept_hostkey: yes
+
+    - name: Ansible check directory exists example.
+      stat:
+        path: "{{web_dir}}/{{app_name}}"
+      register: tmp_app_dir
+
+    - name: Create directory if does not exists
+      file:
+        path: "{{web_dir}}/{{app_name}}"
+        state: directory
+      when: tmp_app_dir.stat.exists == False
+      become: true
+
+    - name: Create symbolic link for release dir
+      file:
+        src: "{{app_dir}}/{{app_name}}"
+        path: "{{web_dir}}/{{app_name}}/release"
+        state: link
+      become: true
+
+    - name: Delete some file
+      file:
+        state: absent
+        path: "{{app_dir}}/{{app_name}}/{{release_date}}/*.dist"
+
+    - name: Delete some file
+      file:
+        state: absent
+        path: "{{app_dir}}/{{app_name}}/{{release_date}}/Homestead.yml"
+
+#    # Copy env and init it
+#    - name: Init ENV VAR
+#      copy:
+#        src: "{{app_dir}}/{{app_name}}/{{release_date}}/.env.dist"
+#        dest: "{{app_dir}}/{{app_name}}/{{release_date}}/.env"
+#        owner: kodory
+#        group: kodory
+
+    - name: Composer install
+      composer:
+        command: install
+        working_dir: "{{app_dir}}/{{app_name}}/{{release_date}}"
+        no_dev: true
+
+    # ALWAYS LAST TASK PLAYED
+    - name: Create symbolic link for current version
+      file:
+        src: "{{app_dir}}/{{app_name}}/{{release_date}}"
+        path: "{{web_dir}}/{{app_name}}/current"
+        state: link
+      become: true

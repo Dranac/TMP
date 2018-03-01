@@ -24,16 +24,17 @@ You need
 
 ##### Step 3 :
     `cd cryboard & php /bin/composer.phar install`
-    
-I recommend you to install ansible in the vagrant box. Then you'll be able to run the following command. This will set up cron task which will help you to sync exchange data to the different coins. (Don't do it inside the vagrant. Won't work without API KEY)
-
-    `ansible-playbook playbook/cron.yml`
-
 
 Issue about Vagrant and Virtualbox shared folder ?
     
     `sudo ln -sf /usr/lib/x86_64-linux-gnu/VBoxGuestAdditions/mount.vboxsf /sbin/mount.vboxsf̀`
 
 Possible issue about RSYNC. Check the src path. Fix it for your case.
+    
+## PART DOWN THERE WON'T WORK WITHOUT API KEY  
+   
+I recommend you to install ansible in the vagrant box. Then you'll be able to run the following command. This will set up cron task which will help you to sync exchange data to the different coins. (Don't do it inside the vagrant. Won't work without API KEY)
+
+    `ansible-playbook playbook/cron.yml`
 
 _**that's all folks**_

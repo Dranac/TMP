@@ -1,6 +1,6 @@
 #CRYBOARD
 
-Hello, this is a training project. It won't work without API_KEY which i won't provide for obvious reason. 
+Hello, this is a training project. *It won't work without API_KEY*(it's data dependant at this moment) which i won't provide for obvious reason. 
 Use this project to take a look at the code. It was initially to refresh my skill about symfony, ansible, vagrant and the management of API. 
 NO DB ? Using a filesystem to store those small data are efficient enough. 
 

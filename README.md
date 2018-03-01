@@ -1,5 +1,9 @@
 #CRYBOARD
 
+Hello, this is a training project. It won't work without API_KEY which i won't provide for obvious reason. 
+Use this project to take a look at the code. It was initially to refresh my skill about symfony, ansible, vagrant and the management of API. 
+NO DB ? Using a filesystem to store those small data are efficient enough. 
+
 [![CircleCI](https://circleci.com/bb/vperillat/cryboard.svg?style=shield&circle-token=1375da6d6b571a85451dd257bd5318f8ec4352f4)](https://circleci.com/bb/vperillat/cryboard)
 
 Cryboard is a board which display markets information about some cryptocurrencies.
